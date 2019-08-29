@@ -2,16 +2,16 @@ from typing import List
 from copy import deepcopy
 
 
-def backtrack(a: List, tmp: str, s: str):
-    a.append(deepcopy(tmp))
+def backtrack(tmp: str, s: str):
+    ans.append(tmp[:])  # https://leetcode.com/problems/permutations/discuss/18284/Backtrack-Summary%3A-General-Solution-for-10-Questions!!!!!!!!-Python-(Combination-Sum-Subsets-Permutation-Palindrome)
     for i in range(len(s)):
         tmp += s[i]
-        backtrack(a, tmp, s[1:])
+        backtrack(tmp, s[i + 1:])
         tmp = tmp[:-1]
 
 
 if __name__ == '__main__':
-    string = "ab"
+    string = "abc"
     ans = []
-    backtrack(ans, "", string)
+    backtrack("", string)
     print(ans)
