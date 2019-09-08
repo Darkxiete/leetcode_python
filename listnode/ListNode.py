@@ -9,6 +9,8 @@ class ListNode:
 
 
 def create_listnode(nums: List[int]) -> ListNode:
+    if not nums:
+        return None
     head = curr = ListNode(nums[0])
     for i in range(1, len(nums)):
         curr.next = ListNode(nums[i])

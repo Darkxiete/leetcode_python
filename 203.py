@@ -26,6 +26,12 @@ class Solution:
         return dummy.next
 
     def removeElements3(self, head: ListNode, val: int) -> ListNode:
+        """
+        recursive
+        :param head:
+        :param val:
+        :return:
+        """
         if not head:
             return head
         head.next = self.removeElements2(head.next, val)
