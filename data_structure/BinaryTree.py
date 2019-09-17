@@ -8,19 +8,22 @@ class BinaryTree:
         self.right = None
 
 
-def create_btree(root, i, n, nums: List[int]) -> BinaryTree:
-    """
-    Initialize a complete Binary Tree
-    :param top:
-    :param index:
-    :param nums:
-    :return:
-    """
-    if i < n:
-        root = BinaryTree(nums[i])
-        root.left = create_btree(root.left, 2 * i + 1, n, nums)
-        root.right = create_btree(root.right, 2 * i + 2, n, nums)
-    return root
+def create_btree(nums):
+    def _create_btree(root, i, n, nums: List[int]) -> BinaryTree:
+        """
+        Initialize a complete Binary Tree
+        :param top:
+        :param index:
+        :param nums:
+        :return:
+        """
+        if i < n:
+            root = BinaryTree(nums[i])
+            root.left = _create_btree(root.left, 2 * i + 1, n, nums)
+            root.right = _create_btree(root.right, 2 * i + 2, n, nums)
+        return root
+    root = BinaryTree(0)
+    return _create_btree(root, 0, len(nums), nums)
 
 
 def show_btree_recursive1(root):
@@ -61,6 +64,14 @@ def show_btree_recursive3(root):
 
 def show_btree_iterative1(root):
     """
+    level
+    :param root:
+    :return:
+    """
+
+
+def show_btree_iterative2(root):
+    """
     pre-order
     :param root:
     :return:
@@ -77,7 +88,7 @@ def show_btree_iterative1(root):
             stack.append(node.left)
 
 
-def show_btree_iterative2(root):
+def show_btree_iterative3(root):
     """
     pre-order
     :param root:
@@ -98,12 +109,13 @@ def show_btree_iterative2(root):
         root = stack.pop()
 
 
-def show_btree_iterative3(root):
+def show_btree_iterative4(root):
     """
     in-order
     :param root:
     :return:
     """
+
     def go_along_left_branch(node, stack):
         while node:
             stack.append(node)
@@ -120,7 +132,7 @@ def show_btree_iterative3(root):
 
 
 if __name__ == '__main__':
-    nums = [1, 2, 3, 4, 5, 6]
-    root = BinaryTree(0)
-    bt = create_btree(root, 0, len(nums), nums)
-    show_btree_iterative3(bt)
+    nums1 = [1, 2, 3, 4, 5, 6]
+    nums2 = [1, None, 2, 3]
+    bt = create_btree(nums1)
+    show_btree_iterative1(bt)
