@@ -22,6 +22,7 @@ def create_btree(nums):
             root.left = _create_btree(root.left, 2 * i + 1, n, nums)
             root.right = _create_btree(root.right, 2 * i + 2, n, nums)
         return root
+
     root = BinaryTree(0)
     return _create_btree(root, 0, len(nums), nums)
 
@@ -62,15 +63,7 @@ def show_btree_recursive3(root):
         print(root.val, end='\t')
 
 
-def show_btree_iterative1(root):
-    """
-    level
-    :param root:
-    :return:
-    """
-
-
-def show_btree_iterative2(root):
+def show_btree_dfs_iterative1(root):
     """
     pre-order
     :param root:
@@ -88,7 +81,7 @@ def show_btree_iterative2(root):
             stack.append(node.left)
 
 
-def show_btree_iterative3(root):
+def show_btree_dfs_iterative2(root):
     """
     pre-order
     :param root:
@@ -109,7 +102,7 @@ def show_btree_iterative3(root):
         root = stack.pop()
 
 
-def show_btree_iterative4(root):
+def show_btree_dfs_iterative3(root):
     """
     in-order
     :param root:
@@ -131,8 +124,65 @@ def show_btree_iterative4(root):
         root = root.right
 
 
+def show_btree_dfs_iterative4(root):
+    """
+    in-order
+    :param root:
+    :return:
+    """
+    stack = []
+    while True:
+        if root:
+            stack.append(root)
+            root = root.left
+        elif stack:
+            root = stack.pop()
+            print(root.val)
+            root = root.right
+        else:
+            break
+
+
+def show_btree_dfs_iterative5(root):
+    """
+    post-order
+    mirror
+    >  modified preorder (right subtree first). Then reverse the result.
+    :param root:
+    :return:
+    """
+    if not root:
+        return []
+    ans, stack = [], [root]
+    while stack:
+        node = stack.pop()
+        ans.append(node.val)
+        if node.left:
+            stack.append(node.left)
+        if node.right:
+            stack.append(node.right)
+    print(ans[::-1])
+
+
+def show_btree_bfs_recursive1(root):
+    pass
+
+
+def show_btree_bfs_iterative1(root):
+    queue = [root]
+    while queue:
+        root = queue[0]
+        queue = queue[1:]
+        print(root.val)
+        if root.left:
+            queue.append(root.left)
+        if root.right:
+            queue.append(root.right)
+
+
 if __name__ == '__main__':
     nums1 = [1, 2, 3, 4, 5, 6]
     nums2 = [1, None, 2, 3]
+    nums3 = ["b", "a", "f", None, None, "d", "g", None, None, None, None, "c", "e"]
     bt = create_btree(nums1)
-    show_btree_iterative1(bt)
+    show_btree_dfs_iterative5(bt)

@@ -38,7 +38,7 @@ class Solution:
                 while head and head.next and head.val == head.next.val:
                     head = head.next
                 head = head.next
-                pre.next = head
+                pre.next = head  # prev不前进
             else:
                 pre = pre.next
                 head = head.next
@@ -81,7 +81,7 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    nums = [1, 2, 2, 3, 4, 4]
+    nums = [1, 2, 3, 3, 4, 4]
     ln = create_listnode(nums)
     show_listnode(ln)
     ans = s.deleteDuplicates2(ln)

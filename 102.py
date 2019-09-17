@@ -39,16 +39,23 @@ class Solution:
         return ans
 
     def levelOrder2(self, root: TreeNode) -> List[List[int]]:
-        def helper(res, root, height):
-            if not root:
-                return
-            if height >= len(res):
-                res.append([])
-            res[height].append(root.val)
-            helper(res, root.left, height + 1)
-            helper(res, root.right, height + 1)
+        """
+        pre-order recursive
+        结果是 level order
+        :param root:
+        :return:
+        """
+
+        def dfs(res, root, height):
+            if root:
+                if len(res) < height + 1:
+                    res.append([])
+                res[height].append(root.val)
+                dfs(res, root.left, height + 1)
+                dfs(res, root.right, height + 1)
+
         res = []
-        helper(res, root, 0)
+        dfs(res, root, 0)
         return res
 
 
