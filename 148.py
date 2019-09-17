@@ -1,4 +1,4 @@
-from listnode.ListNode import ListNode, create_listnode, show_listnode
+from data_structure.ListNode import ListNode, create_listnode, show_listnode
 
 
 class Solution(object):
