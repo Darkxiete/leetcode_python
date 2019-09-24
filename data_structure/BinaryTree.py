@@ -18,9 +18,10 @@ def create_btree(nums):
         :return:
         """
         if i < n:
-            root = BinaryTree(nums[i])
-            root.left = _create_btree(root.left, 2 * i + 1, n, nums)
-            root.right = _create_btree(root.right, 2 * i + 2, n, nums)
+            root = BinaryTree(nums[i]) if nums[i] is not None else None
+            if root is not None:
+                root.left = _create_btree(root.left, 2 * i + 1, n, nums)
+                root.right = _create_btree(root.right, 2 * i + 2, n, nums)
         return root
 
     root = BinaryTree(0)
