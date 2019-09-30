@@ -200,8 +200,7 @@ def show_btree_bfs_iterative1(root):
         return
     queue = [root]
     while queue:
-        root = queue[0]
-        queue = queue[1:]  # 模仿deque操作
+        root = queue.pop(0)
         print(root.val)
         if root.left:
             queue.append(root.left)
