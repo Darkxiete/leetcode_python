@@ -208,6 +208,27 @@ def show_btree_bfs_iterative1(root):
             queue.append(root.right)
 
 
+def show_btree_bfs_iterative_with_level(root):
+    if not root:
+        return root
+    level, queue = [], [root]
+    print([root.val])
+    while any(queue):
+        for node in queue:
+            if node and node.left:
+                level.append(node.left)
+            else:
+                level.append(None)
+            if node and node.right:
+                level.append(node.right)
+            else:
+                level.append(None)
+        if any(level):
+            print([i.val if i else None for i in level])
+        queue = level[:]
+        level = []
+
+
 def prev_order_traversal_morris(root: BinaryTree):
     if not root:
         return
@@ -294,5 +315,6 @@ if __name__ == '__main__':
     nums1 = [1, 2, 3, 4, 5, 6]
     nums2 = [1, None, 2, 3]
     nums3 = ["b", "a", "f", None, None, "d", "g", None, None, None, None, "c", "e"]
-    bt = create_btree(nums1)
-    post_order_traversal_morris(bt)
+    nums4 = range(10)
+    bt = create_btree(nums4)
+    post_order_traversal_iterative(bt)

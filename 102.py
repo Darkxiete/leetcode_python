@@ -48,6 +48,7 @@ class Solution:
 
         def dfs(res, root, height):
             if root:
+                # res的长度是现在遍历到的层级高度，如果出现高度高于目前遍历的层级高度，高度+1
                 if len(res) < height + 1:
                     res.append([])
                 res[height].append(root.val)

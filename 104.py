@@ -1,27 +1,43 @@
-from data_structure.BinaryTree import BinaryTree as TreeNode, create_btree, show_btree_dfs_iterative3
+from data_structure.BinaryTree import BinaryTree as TreeNode, create_btree, show_btree_bfs_iterative_with_level
 from typing import List
 
 
 class Solution:
-    def maxDepth(self, root: TreeNode) -> int:
-        # TODO
-        depth = 0
-        queue = [root]
+    def maxDepth1(self, root: TreeNode) -> int:
+        """
+        iterative
+        :param root:
+        :return:
+        """
+        if not root:
+            return 0
+        level, queue, height = [], [root], 1
         while queue:
-            root = queue.pop(0)
-            if not queue:
-                depth += 1
-            if root.left:
-                queue.append(root.left)
-            if root.right:
-                queue.append(root.right)
-        return depth
+            for node in queue:
+                if node.left:
+                    level.append(node.left)
+                if node.right:
+                    level.append(node.right)
+            if level:
+                height += 1
+            queue = level[:]
+            level = []
+        return height
+
+    def maxDepth2(self, root: TreeNode) -> int:
+        """
+        recursive
+        假设每个叶子节点的高度都是0，从叶子节点网上逐层+1得到父节点的高度
+        :param root:
+        :return:
+        """
+        if not root:
+            return 0
+        return 1 + max(self.maxDepth2(root.left), self.maxDepth2(root.right))
 
 
 if __name__ == '__main__':
-    nums = [3, 9, 20, None, None, 15, 7, 1]
+    nums = [3, 9, 20, None, None, 15, 7]
     bt = create_btree(nums)
-    show_btree_dfs_iterative3(bt)
     s = Solution()
-    print("====")
-    print(s.maxDepth(bt))
+    print(s.maxDepth2(bt))
