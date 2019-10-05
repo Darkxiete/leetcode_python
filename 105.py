@@ -41,14 +41,12 @@ class Solution:
         if not preorder:
             return None
 
-        root = TreeNode(preorder[0])
-        stack = []
-        stack.append(root)
+        root = TreeNode(preorder.pop(0))
+        stack = [root]
 
-        pre = 1
         ino = 0
-        while pre < len(preorder):
-            curr = TreeNode(preorder[pre])
+        while preorder:
+            curr = TreeNode(preorder.pop(0))
             prev = None
             while stack and stack[-1].val == inorder[ino]:
                 prev = stack.pop()
@@ -59,7 +57,7 @@ class Solution:
                 stack[-1].left = curr
 
             stack.append(curr)
-            pre += 1
+            # pre += 1
             # print('-----')
             # show_btree_bfs_iterative_with_level(root)
             # print('-----')
