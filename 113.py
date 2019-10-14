@@ -55,6 +55,8 @@ class Solution:
     def pathSum2(self, root: TreeNode, Sum: int) -> List[List[int]]:
         """
         dfs+stack iterative
+
+        迭代版本其实就是自己用一个`stack`实现递归中的栈帧
         :param root:
         :param Sum:
         :return:
