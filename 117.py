@@ -1,4 +1,4 @@
-from data_structure.BinaryTree import Node
+from DataStructure.BinaryTree import Node
 
 
 class Solution:

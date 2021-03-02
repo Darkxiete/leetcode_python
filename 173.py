@@ -1,4 +1,4 @@
-from data_structure.BinaryTree import BinaryTree as TreeNode, create_btree, show_btree_bfs_iterative_with_level, \
+from DataStructure.BinaryTree import BinaryTree as TreeNode, create_btree, show_btree_bfs_iterative_with_level, \
     stringToTreeNode
 from typing import List
 

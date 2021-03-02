@@ -1,4 +1,4 @@
-from data_structure.BinaryTree import BinaryTree as TreeNode, create_btree
+from DataStructure.BinaryTree import BinaryTree as TreeNode, create_btree
 
 
 class Solution:
